@@ -33,9 +33,9 @@ export class RegistrationComponent implements OnInit {
   countries: string[] = ['Argentina', 'China', 'US', 'UK', 'India', 'UAE', 'Philippines'];
   constructor() {
 
-   // this.registrations.push(new Registration('Jec', 'Doe', { year: 1992, month: 2, day: 2 }, 'jec@gmail.com', 'jec', 'UK'));
-   // this.registrations.push(new Registration('Ria', 'Cruz', { year: 1994, month: 9, day: 3 }, 'ria@gmail.com', 'ria', 'UAE'));
-   // this.registrations.push(new Registration('Lebron', 'James', { year: 1985, month: 7, day: 25 }, 'lebron@gmail.com', 'lebron', 'India'));
+    // this.registrations.push(new Registration('Jec', 'Doe', { year: 1992, month: 2, day: 2 }, 'jec@gmail.com', 'jec', 'UK'));
+    // this.registrations.push(new Registration('Ria', 'Cruz', { year: 1994, month: 9, day: 3 }, 'ria@gmail.com', 'ria', 'UAE'));
+    // this.registrations.push(new Registration('Lebron', 'James', { year: 1985, month: 7, day: 25 }, 'lebron@gmail.com', 'lebron', 'India'));
   }
 
   ngOnInit() { }
@@ -52,6 +52,7 @@ export class RegistrationComponent implements OnInit {
 
 
   onSave() {
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     if (this.regModel.firstName == '') {
       Swal('Message', 'Please enter First Name!', 'error');
@@ -68,6 +69,10 @@ export class RegistrationComponent implements OnInit {
       Swal('Message', 'Please enter Email!', 'error');
 
     }
+    else if (!this.regModel.email.match(mailformat)) {
+      Swal('Message', 'Invalid email address!', 'error');
+    }
+
     else if (this.regModel.password == '') {
       Swal('Message', 'Please enter Password!', 'error');
 
